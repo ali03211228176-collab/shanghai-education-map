@@ -149,13 +149,13 @@ function renderGeo(features){
 }
 async function loadMap(){
  try{
-   const res=await fetch("https://geo.datav.aliyun.com/areas_v3/bound/310000_full.json");
+   const res=await fetch("./shanghai.json");
    if(!res.ok)throw new Error("地图数据请求失败："+res.status);
    const geo=await res.json();
    geoFeatures=geo.features||[];
    renderGeo(geoFeatures);
  }catch(e){
-   $("map").innerHTML='<text x="280" y="190" text-anchor="middle" fill="#8b6f5d" font-size="13">行政区边界加载失败</text><text x="280" y="215" text-anchor="middle" fill="#9a8c7d" font-size="11">请联网后刷新页面；其余学校搜索和详情仍可使用</text>';
+   $("map").innerHTML='<text x="280" y="190" text-anchor="middle" fill="#8b6f5d" font-size="13">行政区边界加载失败</text><text x="280" y="215" text-anchor="middle" fill="#9a8c7d" font-size="11">请确认仓库根目录已上传 shanghai.json；其余学校搜索和详情仍可使用</text>';
    $("mapstatus").textContent="边界数据加载失败";
  }
 }
