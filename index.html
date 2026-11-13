@@ -159,8 +159,8 @@ async function loadMap(){
    $("mapstatus").textContent="边界数据加载失败";
  }
 }
-$("quick").innerHTML=`<button class="chip" data-special="unverified">待核实地址学校（${schools.filter(s=>s.programs.some(p=>p.district==="待核实")).length}）</button><button class="chip" data-special="all">查看全部学校（${schools.length}）</button>`;
-$("quick").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const list=t.dataset.special==="all"?schools:schools.filter(s=>s.programs.some(p=>p.district==="待核实"));showPanel();$("panelTitle").textContent=t.dataset.special==="all"?"全部招生学校":"待核实地址学校";$("panelMeta").textContent=`${list.length} 所学校`;$("schoolList").innerHTML=list.map(s=>`<div class="school"><div class="schoolrow"><div><div class="schoolname">${esc(s.name)}</div><div class="code">学校代码 ${esc(s.code)} · ${s.programs.length} 条专业记录</div></div><button class="view" data-school="${esc(s.code)}">查看详情</button></div><div class="schoolmeta">${esc(s.addresses.join("；"))}</div></div>`).join("");$("detail").classList.remove("show");currentDistrict=null;});
+$("quick").innerHTML=`<button class="chip" data-special="all">查看全部学校（${schools.length}）</button>`;
+$("quick").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const list=schools;showPanel();$("panelTitle").textContent="全部招生学校";$("panelMeta").textContent=`${list.length} 所学校`;$("schoolList").innerHTML=list.map(s=>`<div class="school"><div class="schoolrow"><div><div class="schoolname">${esc(s.name)}</div><div class="code">学校代码 ${esc(s.code)} · ${s.programs.length} 条专业记录</div></div><button class="view" data-school="${esc(s.code)}">查看详情</button></div><div class="schoolmeta">${esc(s.addresses.join("；"))}</div></div>`).join("");$("detail").classList.remove("show");currentDistrict=null;});
 $("schoolList").addEventListener("click",e=>{const b=e.target.closest("[data-school]");if(b)openSchool(b.dataset.school,currentDistrict);});
 function search(){
  const q=$("q").value.trim().toLowerCase();if(!q)return;
