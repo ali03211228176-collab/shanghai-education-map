@@ -79,7 +79,7 @@ function openSchool(code, districtFilter=null){
  const s=schools.find(x=>x.code===String(code));if(!s)return;
  const programs=districtFilter?s.programs.filter(p=>p.district===districtFilter):s.programs;
  $("detail").classList.add("show");
- $("detail").innerHTML=`<h3>${esc(s.name)}</h3><div class="meta">学校代码 ${esc(s.code)} · 行政区：${esc(s.district)}</div><div class="program"><span class="muted">中职就读地址：</span>${esc(s.addresses.join("；")||"待补充")}</div>`+programs.map(p=>`<div class="program"><b>${esc(p.major)}</b><br>${esc(p.college)}<br><span class="muted">招生代码 ${esc(p.code)} · 计划 ${esc(p.quota)} 人 · 志愿 ${esc(p.wish)} · PDF第${esc(p.page)}页</span></div>`).join("");
+ $("detail").innerHTML=`<h3>${esc(s.name)}</h3><div class="meta">学校代码 ${esc(s.code)} · 行政区：${esc(s.district)}</div><div class="program"><span class="muted">中职就读地址：</span>${esc(s.addresses.join("；")||"待补充")}</div>`+programs.map(p=>`<div class="program"><b>${esc(p.major)}</b><br>${esc(p.college)}<br><span class="muted">招生代码 ${esc(p.code)} · 计划 ${esc(p.quota)} 人 · 志愿 ${esc(p.wish)}</span></div>`).join("");
  $("detail").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function polygons(geom){
